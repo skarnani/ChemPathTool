@@ -6,8 +6,10 @@
 # D. G. Goodwin, 8/7/02
 #
 
-from Cantera import CanteraError    
-from Cantera.gases import IdealGasMix
+#Commented CanteraError out because it doesn't appear in new versions
+#from cantera import CanteraError 
+from cantera import Solution
+#Changed from cantera.gases import IdealGasMix
 
 # Store the object representing the mechanism here
 class __data:
