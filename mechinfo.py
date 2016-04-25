@@ -15,43 +15,49 @@ from cantera import Solution
 class __data:
     g = None
     nsp = 0
+
+def readSolution(solution):
+    """Read in a solution file."""
+    g = solution
+    __data.g = g
+    __data.nsp = g.n_species
     
 def readMechanism(infile, thermo=""):
     """Read in a mechanism file."""
-    g = IdealGasMix(infile, thermo)
+    g = Solution(infile, thermo)
     __data.g = g
-    __data.nsp = g.nSpecies()
+    __data.nsp = g.n_species
 
 def setState(T, P, X):
     """Set the gas temperature [K], pressure [Pa],
     and mole fractions."""
-    __data.g.setState_TPX(T, P, X)
+    __data.g.TPX = T, P, X
 
 def elementNames():
-    return __data.g.elementNames()
+    return __data.g.element_names
 
 def indexElt(elt):
-    return __data.g.elementIndex(elt)
+    return __data.g.element_index(elt)
 
 def indexSpec(elt):
-    return __data.g.speciesIndex(elt)
+    return __data.g.species_index(elt)
 
 def elementAtomicWt():
-    return __data.g.atomicWeights()
+    return __data.g.atomic_weights
 
 def speciesNames():
-    return __data.g.speciesNames()
+    return __data.g.species_names
 
 def numberOfElementXinSpeciesY(X,Y):
-    _m = __data.g.elementIndex(X)
-    _k = __data.g.speciesIndex(Y)
-    return __data.g.nAtoms(_k, _m)
+    _m = __data.g.element_index(X)
+    _k = __data.g.species_index(Y)
+    return __data.g.n_atoms(_k, _m)
 
 def numSpecies():
-    return __data.g.nSpecies()
+    return __data.g.n_species
 
 def numReactions():
-    return __data.g.nReactions()
+    return __data.g.n_reactions
 
 def specCoeffsInReaction(r):
     """Return a list of pairs of (species name, coefficient) for reaction
@@ -59,28 +65,28 @@ def specCoeffsInReaction(r):
     are included."""
     c = []
     for k in range(__data.nsp):
-        nu = (__data.g.productStoichCoeff(k,r) -
-              __data.g.reactantStoichCoeff(k,r))
+        nu = (__data.g.product_stoich_coeff(k,r) -
+              __data.g.reactant_stoich_coeff(k,r))
         if (nu <> 0):
-            c.append((__data.g.speciesName(k),nu))
+            c.append((__data.g.species_name(k),nu))
     return c
 
 def reactionString(r):
     return __data.g.reactionString(r)
 
 def fwdRatesOfProgress():
-    return __data.g.fwdRatesOfProgress()
+    return __data.g.forward_rates_of_progress
 
 def revRatesOfProgress():
-    return __data.g.revRatesOfProgress()
+    return __data.g.reverse_rates_of_progress
             
 
 # test
 if __name__ == "__main__":
 
-    from Cantera import OneAtm
+    from cantera import one_atm
     readMechanism('gri30.inp')
-    setState(2000.0, OneAtm, [1.0]*numSpecies())
+    setState(2000.0, one_atm, [1.0]*numSpecies())
     print __data.g
 
     print
