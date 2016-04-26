@@ -3,8 +3,8 @@ from CanteraChemEdgeAnalysis import *
 
 if __name__ == "__main__":
 
-    from Cantera import OneAtm
-    readMechanism('gri30.inp')
+    from cantera import one_atm
+    readMechanism('gri30.xml')
     Nspec = numSpecies()
 
     # Set state
