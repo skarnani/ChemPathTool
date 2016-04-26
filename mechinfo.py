@@ -72,7 +72,7 @@ def specCoeffsInReaction(r):
     return c
 
 def reactionString(r):
-    return __data.g.reactionString(r)
+    return __data.g.reaction_type(r)
 
 def fwdRatesOfProgress():
     return __data.g.forward_rates_of_progress
@@ -85,7 +85,7 @@ def revRatesOfProgress():
 if __name__ == "__main__":
 
     from cantera import one_atm
-    readMechanism('gri30.inp')
+    readMechanism('gri30.xml')
     setState(2000.0, one_atm, [1.0]*numSpecies())
     print __data.g
 
