@@ -1,10 +1,10 @@
 # ChemPathTool
 
-https://ccse.lbl.gov/Research/Combustion/README_chemPathTool.htm
+- https://ccse.lbl.gov/Research/Combustion/README_chemPathTool.htm
 
-Chemical Reaction Path Diagram Tool
+#Chemical Reaction Path Diagram Tool
 
-Introduction: Reaction Path Diagrams
+##Introduction: Reaction Path Diagrams
 
 The reaction path diagram tool (ChemPathTool) aids in the generation of chemical path diagrams for reacting flow systems.  More generally, ChemPathTool is used to manipulate graphically the layout of a bi-directed graph.  For reacting flow systems, the nodes of this graph represent chemical species, and the arrows (or, edges) connecting the nodes represent the flow of a conserved quantity between species, such as the transfer rate of a particular element.
 In our systems, atoms are transferred among species through chemical reactions.  For example, when the reaction CH4(+M)<=>H+CH3(+M) proceeds, the impact of an arbitrary molecule (M) knocks one H atom from the CH4 molecule.  Thus, a carbon atom is "transferred" from the set of all CH4 molecules to the set of CH3.  The progress rate of this reaction (and its reverse, ie sticking an H atom onto a CH3 molecule) depends on the local state.  In a typical reacting flow calculation there are hundreds of such reactions, and the goal is to understand how the state of the fluid affects the reaction balance.  The path diagram turns out to be a good way to visualize the state of the chemical system.
